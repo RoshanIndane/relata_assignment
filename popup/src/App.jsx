@@ -27,14 +27,63 @@ const [agreevalue, setAgreevalue]=useState(((totalvalueodpro)+(+gst)))
 
 const [ad, setAd]=useState(193523)
 
-const [discount, setDiscount]=useState()
+const [discount, setDiscount]=useState(0)
 
-const [netdisc, setNetDisc]=useState(6000000)
+const [netdisc, setNetDisc]=useState(0)
 
-const [gstdisc, setGstdisc]=useState(475000)
+const [gstdisc, setGstdisc]=useState(0)
 
-// const total=
+const [totalAmount, setTotalAmount] = useState(0)
 
+const [buttontoggle, setButtontoggle]=useState(true)
+const [warning, setWarning] = useState(false)
+const [error, setError] = useState(false)
+
+setTimeout(()=>{
+  checkCond()
+ 
+},1000)
+
+
+const checkCond = () => {
+  
+  if(discount<150){
+    setButtontoggle(false);
+    setWarning(false)
+    setError(false)
+  }
+  
+  else if(discount >= 1000){
+    setError(true)
+    setWarning(false)
+    setButtontoggle(true)
+
+  }
+  else if(discount >= 150){
+    setWarning(true)
+    setButtontoggle(true)
+  }
+  else if(discount < 150){
+    setError(false)
+    setWarning(false)
+
+  }
+
+
+}
+
+const discountFunc = () => {
+  setNetDisc(discount * sbarea)
+  setGstdisc((discount * sbarea)*0.18)
+
+
+  const data = agreevalue + ad - (discount * sbarea) - ((discount * sbarea)*0.18)
+  // console.log(data)
+  setTotalAmount(data.toFixed(2))
+ 
+  
+
+}
 
 
   return (
@@ -74,6 +123,9 @@ const [gstdisc, setGstdisc]=useState(475000)
                 <div className='box'>
                   <p>Discount Amount</p>
                   <input type="number" onInput={(e)=>setDiscount(e.target.value)} />
+                  
+                  <p style={{display: warning? "block" : "none", color:"yellow" }}>Discount amount seems to be very high!</p>
+                  <p  style={{display: error? "block" : "none", color:"red" }}>You can't give that high Discount, contact admin</p>
                 </div>
 
                 <div className='box'>
@@ -83,7 +135,7 @@ const [gstdisc, setGstdisc]=useState(475000)
 
                 <div className='warning'><p>By clicking Apply Discount you are making updates to the cost sheet thet the user can view. Confirm Discount on the summary on the right before clicking on apply discount. </p></div>
 
-<button className='ADiscount'>Apply Discount</button>
+<button className='ADiscount' disabled={buttontoggle} onClick={discountFunc}>Apply Discount</button>
 <p className='costsheet'>Download Cost Sheet</p>
 
               </div>
@@ -124,10 +176,10 @@ const [gstdisc, setGstdisc]=useState(475000)
 
                 <div className='iteamsuu'>
                   <div className='iteam' ><p style={{color:"black"}}>Discount per Sqft</p>
-                  <p style={{color:"black"}}>-₹{discount}</p></div>
+                  <p style={{color:"black"}}>-₹{discount}.00</p></div>
 
                   <div className='iteam'><p style={{color:"black"}}>Net Discount</p>
-                  <p style={{color:"black"}}>-₹{netdisc}</p></div>
+                  <p style={{color:"black"}}>-₹{netdisc}.00</p></div>
 
                   <div className='iteam'><p style={{color:"black"}}>GST Discount</p>
                   <p style={{color:"black"}} >-₹{gstdisc}</p></div>
@@ -137,7 +189,7 @@ const [gstdisc, setGstdisc]=useState(475000)
 
 
                 <div className='iteamsuu' style={{marginTop:"7%"}}><div  className='iteam'><p style={{color:"black", fontSize:"24px", fontWeight:"bold"}}>All Inclusive Total </p>
-                <p style={{color:"black", fontSize:"24px", fontWeight:"bold"}}>₹4,38,274</p></div></div>
+                <p style={{color:"black", fontSize:"24px", fontWeight:"bold"}}>₹ {totalAmount}</p></div></div>
 
 
 

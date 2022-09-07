@@ -159,19 +159,19 @@ align-items: center;
 }
 
 .ADiscount{
-  background-color: darkgray;
+  /* background-color: darkgray; */
   padding: 10px 98px;
-  color: white;
+  /* color: white; */
   font-weight: bolder;
-  border: none;
+  /* border: none; */
   margin-top: 7%;
   cursor: pointer;
   font-size: 15px;
 }
 
-.ADiscount:hover{
+/* .ADiscount:hover{
 color: black;
-}
+} */
 
 .costsheet{
   margin-left: 80px;
