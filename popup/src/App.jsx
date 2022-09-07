@@ -15,6 +15,28 @@ const closePopup=()=>{
 
 
 
+const [sbarea, setSbarea]=useState(1058.7)
+
+const [basep, setBasrp]=useState(5747)
+
+const [totalvalueodpro, setTotalvalueodpro]=useState(sbarea*basep);
+
+const [gst, setGst]=useState((totalvalueodpro*0.18).toFixed(2));
+
+const [agreevalue, setAgreevalue]=useState(((totalvalueodpro)+(+gst)))
+
+const [ad, setAd]=useState(193523)
+
+const [discount, setDiscount]=useState()
+
+const [netdisc, setNetDisc]=useState(6000000)
+
+const [gstdisc, setGstdisc]=useState(475000)
+
+// const total=
+
+
+
   return (
     <>
     <div className='nav'>
@@ -51,7 +73,7 @@ const closePopup=()=>{
 
                 <div className='box'>
                   <p>Discount Amount</p>
-                  <input value="₹ 150"/>
+                  <input type="number" onInput={(e)=>setDiscount(e.target.value)} />
                 </div>
 
                 <div className='box'>
@@ -80,46 +102,35 @@ const closePopup=()=>{
                   <p>Gardenia, B 505</p></div>
 
                   <div className='iteam'><p>Super Bult Up Area</p>
-                  <p>1058.7 Sq.Ft</p></div>
+                  <p>{sbarea} Sq.Ft</p></div>
 
                   <div className='iteam'><p>Base Price per SqFt</p>
-                  <p>₹5,747</p></div>
+                  <p>₹{basep}</p></div>
 
                   <div className='iteam'><p>Total Value of Property</p>
-                  <p>₹59,47,382</p></div>
+                  <p>₹{totalvalueodpro}</p></div>
 
                   <div className='iteam'><p>GST</p>
-                  <p>₹2,97,369</p></div>
+                  <p>₹{gst}</p></div>
 
                   <div className='iteam'><p>Agreement Value</p>
-                  <p>₹62,44,751</p></div>
+                  <p>₹{agreevalue}</p></div>
 
                   <div className='iteam'><p>Additional & Diposits</p>
-                  <p>₹1,93,523</p></div>
-
-
-
-                  {/* <p><span>Unit number</span><span className='pricel'>Gardenia, B 505</span></p>
-                  <p><span>Super Bult Up Area</span><span className='pricel'>1058.7 Sq.Ft</span></p>
-                  <p><span>Base Price per SqFt</span><span className='pricel'>₹5,747</span></p>
-                  <p><span>Total Value of Property</span><span className='pricel'>₹59,47,382</span></p>
-                  <p><span>GST</span><span className='pricel'>₹2,97,369</span></p>
-                  <p><span>Agreement Value</span><span className='pricel'>₹62,44,751</span></p>
-                  <p><span>Additional & Diposits</span><span className='pricel'>₹1,93,523</span></p> */}
-
+                  <p>₹{ad}</p></div>
                   
                 </div>
                 <hr/>
 
                 <div className='iteamsuu'>
                   <div className='iteam' ><p style={{color:"black"}}>Discount per Sqft</p>
-                  <p style={{color:"black"}}>-₹150</p></div>
+                  <p style={{color:"black"}}>-₹{discount}</p></div>
 
                   <div className='iteam'><p style={{color:"black"}}>Net Discount</p>
-                  <p style={{color:"black"}}>-₹60,00,000</p></div>
+                  <p style={{color:"black"}}>-₹{netdisc}</p></div>
 
                   <div className='iteam'><p style={{color:"black"}}>GST Discount</p>
-                  <p style={{color:"black"}} >-₹47,5000</p></div>
+                  <p style={{color:"black"}} >-₹{gstdisc}</p></div>
                 
                   
                 </div>
